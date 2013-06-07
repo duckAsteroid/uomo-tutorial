@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: N2L API Tests
+Bundle-SymbolicName: com.acme.n2l.tests
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Acme Inc
+Fragment-Host: com.acme.n2l;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: org.unitsofmeasurement.quantity,
+ org.unitsofmeasurement.unit
+Require-Bundle: org.junit;bundle-version="4.10.0"
