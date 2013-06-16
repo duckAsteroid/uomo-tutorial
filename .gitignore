@@ -1,3 +1,6 @@
+# Output files from asciidoc process #
+/doc/target/
+
 *.class
 
 # Package Files #

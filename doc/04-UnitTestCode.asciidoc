@@ -1,0 +1,37 @@
+=== Unit Test Plug-in Code
+
+. Now we are ready to test out our API with a Unit test. What follows is a little long winded thanks to how Eclipse Plug-ins do unit tests..
+. Firstly we need to create a New Fragment Project (File -> New -> Project...): +
+Click “Next”
+. Give the fragment the name of our main project with “.test” appended: +
+Click “Next”
+. We need to give the fragment a “host” that is our com.acme.n2l plugin: +
+Click “Finish”
+. Now we need to add JUnit to the fragment’s dependencies. Find and double click the META-INF/MANIFEST.MF file to open the fragment manifest editor. Select the “Dependencies” tab: +
+Click “Add...”
+. Enter “junit” in the search field: +
+Select the org.junit plugin and click “OK”
+. Now we create a unit test class in our fragment. Find and right click on our NewtonsSeconLaw.java file and choose “New -> Other...” from the context menu.
+. Select Java -> JUnit -> JUnit Test Case from the dialog: +
+Click “Next”
+. Select the location for the unit test in the src folder of our test fragment. And select the calculateForce method for testing: +
+Click “Finish”
+. Now we need to replace the template test code with our own. Add the following:
++
+[source,java]
+----
+@Test
+public void testCalculateForce() {
+  MassAmount m = new MassAmount(1000, SI.KILOGRAM);
+  AccelerationAmount a = new AccelerationAmount(2.5, SI.METRES_PER_SQUARE_SECOND);
+  ForceAmount force = NewtonsSecondLaw.calculateForce(m, a);
+  assertEquals(2500, force.doubleValue(SI.NEWTON), 0.0001);
+}
+----
++
+This method simply creates a 1000 kg mass, a 2.5 m/s^2^ acceleration and asks our N2L class to calculate the force. We then assert that the calculated force is 2500 Newtons (+/- 0.0001).
+
+. Save the file and Right click on it - then choose “Run As - > JUnit Plug-in Test”. The test will run and you should see the JUnit results window appear:
+
+Now you have now completed and tested your first simple UOMo project.So what...
+
