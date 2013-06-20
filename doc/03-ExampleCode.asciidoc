@@ -28,3 +28,5 @@ The units of these parameters are not defined; just that they are of quanity +Ma
 +
 So our code needs to get the absolute value of these in a known unit for calculation - for simplicity we use the SI units Kilogram (kg) and Metres per second per second (m/s2).
 We then simply perform the multiplication, and create a result using the SI unit for Force - Newtons (N).
+
+. Now we have our example API implementation - we need to call it to see it do something. Let's create a unit test. (OK purists, we should have created this first to be truly TDD, but this is just a tutorial!)
