@@ -1,0 +1,1262 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="AsciiDoc 8.6.7">
+<title>Eclipse UOMo Tutorial</title>
+<style type="text/css">
+/* Shared CSS for AsciiDoc xhtml11 and html5 backends */
+
+/* Default font. */
+body {
+  font-family: Georgia,serif;
+}
+
+/* Title font. */
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+  color: navy;
+}
+
+strong {
+  font-weight: bold;
+  color: #083194;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  padding-top: 0.5em;
+}
+h3 {
+  float: left;
+}
+h3 + * {
+  clear: left;
+}
+h5 {
+  font-size: 1.0em;
+}
+
+div.sectionbody {
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
+}
+ul > li     { color: #aaa; }
+ul > li > * { color: black; }
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+#author {
+  color: #527bbd;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+#email {
+}
+#revnumber, #revdate, #revremark {
+}
+
+#footer {
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+#preamble {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.0em;
+  margin-bottom: 2.0em;
+  margin-right: 10%;
+  color: #606060;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  color: #527bbd;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid #dddddd;
+  border-left: 4px solid #f0f0f0;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid #dddddd;
+  border-left: 5px solid #f0f0f0;
+  background: #f8f8f8;
+  padding: 0.5em;
+}
+
+div.quoteblock, div.verseblock {
+  padding-left: 1.0em;
+  margin-left: 1.0em;
+  margin-right: 10%;
+  border-left: 5px solid #f0f0f0;
+  color: #777777;
+}
+
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock > pre.content {
+  font-family: inherit;
+  font-size: inherit;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 3px solid #dddddd;
+}
+
+div.exampleblock > div.content {
+  border-left: 3px solid #dddddd;
+  padding-left: 0.5em;
+}
+
+div.imageblock div.content { padding-left: 0; }
+span.image img { border-style: none; }
+a.image:visited { color: white; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: normal;
+  color: navy;
+}
+dd > *:first-child {
+  margin-top: 0.1em;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+ol.loweralpha {
+  list-style-type: lower-alpha;
+}
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+ol.lowerroman {
+  list-style-type: lower-roman;
+}
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+
+div.compact ul, div.compact ol,
+div.compact p, div.compact p,
+div.compact div, div.compact div {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+tfoot {
+  font-weight: bold;
+}
+td > div.verse {
+  white-space: pre;
+}
+
+div.hdlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hdlist tr {
+  padding-bottom: 15px;
+}
+dt.hdlist1.strong, td.hdlist1.strong {
+  font-weight: bold;
+}
+td.hdlist1 {
+  vertical-align: top;
+  font-style: normal;
+  padding-right: 0.8em;
+  color: navy;
+}
+td.hdlist2 {
+  vertical-align: top;
+}
+div.hdlist.compact tr {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.comment {
+  background: yellow;
+}
+
+.footnote, .footnoteref {
+  font-size: 0.8em;
+}
+
+span.footnote, span.footnoteref {
+  vertical-align: super;
+}
+
+#footnotes {
+  margin: 20px 0 20px 0;
+  padding: 7px 0 0 0;
+}
+
+#footnotes div.footnote {
+  margin: 0 0 5px 0;
+}
+
+#footnotes hr {
+  border: none;
+  border-top: 1px solid silver;
+  height: 1px;
+  text-align: left;
+  margin-left: 0;
+  width: 20%;
+  min-width: 100px;
+}
+
+div.colist td {
+  padding-right: 0.5em;
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+div.colist td img {
+  margin-top: 0.3em;
+}
+
+@media print {
+  #footer-badges { display: none; }
+}
+
+#toc {
+  margin-bottom: 2.5em;
+}
+
+#toctitle {
+  color: #527bbd;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+
+span.aqua { color: aqua; }
+span.black { color: black; }
+span.blue { color: blue; }
+span.fuchsia { color: fuchsia; }
+span.gray { color: gray; }
+span.green { color: green; }
+span.lime { color: lime; }
+span.maroon { color: maroon; }
+span.navy { color: navy; }
+span.olive { color: olive; }
+span.purple { color: purple; }
+span.red { color: red; }
+span.silver { color: silver; }
+span.teal { color: teal; }
+span.white { color: white; }
+span.yellow { color: yellow; }
+
+span.aqua-background { background: aqua; }
+span.black-background { background: black; }
+span.blue-background { background: blue; }
+span.fuchsia-background { background: fuchsia; }
+span.gray-background { background: gray; }
+span.green-background { background: green; }
+span.lime-background { background: lime; }
+span.maroon-background { background: maroon; }
+span.navy-background { background: navy; }
+span.olive-background { background: olive; }
+span.purple-background { background: purple; }
+span.red-background { background: red; }
+span.silver-background { background: silver; }
+span.teal-background { background: teal; }
+span.white-background { background: white; }
+span.yellow-background { background: yellow; }
+
+span.big { font-size: 2em; }
+span.small { font-size: 0.6em; }
+
+span.underline { text-decoration: underline; }
+span.overline { text-decoration: overline; }
+span.line-through { text-decoration: line-through; }
+
+
+/*
+ * xhtml11 specific
+ *
+ * */
+
+tt {
+  font-family: monospace;
+  font-size: inherit;
+  color: navy;
+}
+
+div.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead, p.table.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overriden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+/*
+ * html5 specific
+ *
+ * */
+
+.monospaced {
+  font-family: monospace;
+  font-size: inherit;
+  color: navy;
+}
+
+table.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+thead, p.tableblock.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.tableblock {
+  margin-top: 0;
+}
+table.tableblock {
+  border-width: 3px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #527bbd;
+  border-collapse: collapse;
+}
+th.tableblock, td.tableblock {
+  border-width: 1px;
+  padding: 4px;
+  border-style: solid;
+  border-color: #527bbd;
+}
+
+table.tableblock.frame-topbot {
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+table.tableblock.frame-sides {
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+}
+table.tableblock.frame-none {
+  border-style: hidden;
+}
+
+th.tableblock.halign-left, td.tableblock.halign-left {
+  text-align: left;
+}
+th.tableblock.halign-center, td.tableblock.halign-center {
+  text-align: center;
+}
+th.tableblock.halign-right, td.tableblock.halign-right {
+  text-align: right;
+}
+
+th.tableblock.valign-top, td.tableblock.valign-top {
+  vertical-align: top;
+}
+th.tableblock.valign-middle, td.tableblock.valign-middle {
+  vertical-align: middle;
+}
+th.tableblock.valign-bottom, td.tableblock.valign-bottom {
+  vertical-align: bottom;
+}
+
+
+/*
+ * manpage specific
+ *
+ * */
+
+body.manpage h1 {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-top: 2px solid silver;
+  border-bottom: 2px solid silver;
+}
+body.manpage h2 {
+  border-style: none;
+}
+body.manpage div.sectionbody {
+  margin-left: 3em;
+}
+
+@media print {
+  body.manpage div#toc { display: none; }
+}
+
+
+/*
+ * Theme specific overrides of the preceding (asciidoc.css) CSS.
+ *
+ */
+body {
+  font-family: Garamond, Georgia, serif;
+  font-size: 17px;
+  color: #3E4349;
+  line-height: 1.3em;
+}
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Garmond, Georgia, serif;
+  font-weight: normal;
+  border-bottom-width: 0;
+  color: #3E4349;
+}
+div.title, caption.title { color: #596673; font-weight: bold; }
+h1 { font-size: 240%; }
+h2 { font-size: 180%; }
+h3 { font-size: 150%; }
+h4 { font-size: 130%; }
+h5 { font-size: 115%; }
+h6 { font-size: 100%; }
+#header h1 { margin-top: 0; }
+#toc {
+  color: #444444;
+  line-height: 1.5;
+  padding-top: 1.5em;
+}
+#toctitle {
+  font-size: 20px;
+}
+#toc a {
+    border-bottom: 1px dotted #999999;
+    color: #444444 !important;
+    text-decoration: none !important;
+}
+#toc a:hover {
+    border-bottom: 1px solid #6D4100;
+    color: #6D4100 !important;
+    text-decoration: none !important;
+}
+div.toclevel1 { margin-top: 0.2em; font-size: 16px; }
+div.toclevel2 { margin-top: 0.15em; font-size: 14px; }
+em, dt, td.hdlist1 { color: black; }
+strong { color: #3E4349; }
+a { color: #004B6B; text-decoration: none; border-bottom: 1px dotted #004B6B; }
+a:visited { color: #615FA0; border-bottom: 1px dotted #615FA0; }
+a:hover { color: #6D4100; border-bottom: 1px solid #6D4100; }
+div.tableblock > table, table.tableblock { border: 3px solid #E8E8E8; }
+th.tableblock, td.tableblock { border: 1px solid #E8E8E8; }
+ul > li > * { color: #3E4349; }
+pre, tt, .monospaced { font-family: Consolas,Menlo,'Deja Vu Sans Mono','Bitstream Vera Sans Mono',monospace; }
+tt, .monospaced { font-size: 0.9em; color: black;
+}
+div.exampleblock > div.content, div.sidebarblock > div.content, div.listingblock > div.content { border-width: 0 0 0 3px; border-color: #E8E8E8; }
+div.verseblock { border-left-width: 0; margin-left: 3em; }
+div.quoteblock { border-left-width: 3px; margin-left: 0; margin-right: 0;}
+div.admonitionblock td.content { border-left: 3px solid #E8E8E8; }
+@media screen {
+  body {
+    max-width: 50em; /* approximately 80 characters wide */
+    margin-left: 16em;
+  }
+
+  #toc {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 13em;
+    padding: 0.5em;
+    padding-bottom: 1.5em;
+    margin: 0;
+    overflow: auto;
+    border-right: 3px solid #f8f8f8;
+    background-color: white;
+  }
+
+  #toc .toclevel1 {
+    margin-top: 0.5em;
+  }
+
+  #toc .toclevel2 {
+    margin-top: 0.25em;
+    display: list-item;
+    color: #aaaaaa;
+  }
+
+  #toctitle {
+    margin-top: 0.5em;
+  }
+}
+</style>
+<script type="text/javascript">
+/*<![CDATA[*/
+var asciidoc = {  // Namespace.
+
+/////////////////////////////////////////////////////////////////////
+// Table Of Contents generator
+/////////////////////////////////////////////////////////////////////
+
+/* Author: Mihai Bazon, September 2002
+ * http://students.infoiasi.ro/~mishoo
+ *
+ * Table Of Content generator
+ * Version: 0.4
+ *
+ * Feel free to use this script under the terms of the GNU General Public
+ * License, as long as you do not remove or alter this notice.
+ */
+
+ /* modified by Troy D. Hanson, September 2006. License: GPL */
+ /* modified by Stuart Rackham, 2006, 2009. License: GPL */
+
+// toclevels = 1..4.
+toc: function (toclevels) {
+
+  function getText(el) {
+    var text = "";
+    for (var i = el.firstChild; i != null; i = i.nextSibling) {
+      if (i.nodeType == 3 /* Node.TEXT_NODE */) // IE doesn't speak constants.
+        text += i.data;
+      else if (i.firstChild != null)
+        text += getText(i);
+    }
+    return text;
+  }
+
+  function TocEntry(el, text, toclevel) {
+    this.element = el;
+    this.text = text;
+    this.toclevel = toclevel;
+  }
+
+  function tocEntries(el, toclevels) {
+    var result = new Array;
+    var re = new RegExp('[hH]([1-'+(toclevels+1)+'])');
+    // Function that scans the DOM tree for header elements (the DOM2
+    // nodeIterator API would be a better technique but not supported by all
+    // browsers).
+    var iterate = function (el) {
+      for (var i = el.firstChild; i != null; i = i.nextSibling) {
+        if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
+          var mo = re.exec(i.tagName);
+          if (mo && (i.getAttribute("class") || i.getAttribute("className")) != "float") {
+            result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
+          }
+          iterate(i);
+        }
+      }
+    }
+    iterate(el);
+    return result;
+  }
+
+  var toc = document.getElementById("toc");
+  if (!toc) {
+    return;
+  }
+
+  // Delete existing TOC entries in case we're reloading the TOC.
+  var tocEntriesToRemove = [];
+  var i;
+  for (i = 0; i < toc.childNodes.length; i++) {
+    var entry = toc.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div'
+     && entry.getAttribute("class")
+     && entry.getAttribute("class").match(/^toclevel/))
+      tocEntriesToRemove.push(entry);
+  }
+  for (i = 0; i < tocEntriesToRemove.length; i++) {
+    toc.removeChild(tocEntriesToRemove[i]);
+  }
+
+  // Rebuild TOC entries.
+  var entries = tocEntries(document.getElementById("content"), toclevels);
+  for (var i = 0; i < entries.length; ++i) {
+    var entry = entries[i];
+    if (entry.element.id == "")
+      entry.element.id = "_toc_" + i;
+    var a = document.createElement("a");
+    a.href = "#" + entry.element.id;
+    a.appendChild(document.createTextNode(entry.text));
+    var div = document.createElement("div");
+    div.appendChild(a);
+    div.className = "toclevel" + entry.toclevel;
+    toc.appendChild(div);
+  }
+  if (entries.length == 0)
+    toc.parentNode.removeChild(toc);
+},
+
+
+/////////////////////////////////////////////////////////////////////
+// Footnotes generator
+/////////////////////////////////////////////////////////////////////
+
+/* Based on footnote generation code from:
+ * http://www.brandspankingnew.net/archive/2005/07/format_footnote.html
+ */
+
+footnotes: function () {
+  // Delete existing footnote entries in case we're reloading the footnodes.
+  var i;
+  var noteholder = document.getElementById("footnotes");
+  if (!noteholder) {
+    return;
+  }
+  var entriesToRemove = [];
+  for (i = 0; i < noteholder.childNodes.length; i++) {
+    var entry = noteholder.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div' && entry.getAttribute("class") == "footnote")
+      entriesToRemove.push(entry);
+  }
+  for (i = 0; i < entriesToRemove.length; i++) {
+    noteholder.removeChild(entriesToRemove[i]);
+  }
+
+  // Rebuild footnote entries.
+  var cont = document.getElementById("content");
+  var spans = cont.getElementsByTagName("span");
+  var refs = {};
+  var n = 0;
+  for (i=0; i<spans.length; i++) {
+    if (spans[i].className == "footnote") {
+      n++;
+      var note = spans[i].getAttribute("data-note");
+      if (!note) {
+        // Use [\s\S] in place of . so multi-line matches work.
+        // Because JavaScript has no s (dotall) regex flag.
+        note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
+        spans[i].innerHTML =
+          "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+        spans[i].setAttribute("data-note", note);
+      }
+      noteholder.innerHTML +=
+        "<div class='footnote' id='_footnote_" + n + "'>" +
+        "<a href='#_footnoteref_" + n + "' title='Return to text'>" +
+        n + "</a>. " + note + "</div>";
+      var id =spans[i].getAttribute("id");
+      if (id != null) refs["#"+id] = n;
+    }
+  }
+  if (n == 0)
+    noteholder.parentNode.removeChild(noteholder);
+  else {
+    // Process footnoterefs.
+    for (i=0; i<spans.length; i++) {
+      if (spans[i].className == "footnoteref") {
+        var href = spans[i].getElementsByTagName("a")[0].getAttribute("href");
+        href = href.match(/#.*/)[0];  // Because IE return full URL.
+        n = refs[href];
+        spans[i].innerHTML =
+          "[<a href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+      }
+    }
+  }
+},
+
+install: function(toclevels) {
+  var timerId;
+
+  function reinstall() {
+    asciidoc.footnotes();
+    if (toclevels) {
+      asciidoc.toc(toclevels);
+    }
+  }
+
+  function reinstallAndRemoveTimer() {
+    clearInterval(timerId);
+    reinstall();
+  }
+
+  timerId = setInterval(reinstall, 500);
+  if (document.addEventListener)
+    document.addEventListener("DOMContentLoaded", reinstallAndRemoveTimer, false);
+  else
+    window.onload = reinstallAndRemoveTimer;
+}
+
+}
+asciidoc.install(2);
+/*]]>*/
+</script>
+</head>
+<body class="book">
+<div id="header">
+<h1>Eclipse UOMo Tutorial</h1>
+<span id="author">Chris Senior &amp; Werner Keil</span><br>
+<span id="revnumber">version 1.0,</span>
+<span id="revdate">2013-06-17</span>
+<div id="toc">
+  <div id="toctitle">Table of Contents</div>
+  <noscript><p><b>JavaScript must be enabled in your browser to display the table of contents.</b></p></noscript>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph"><p>This is a quick start guide for users of Eclipse UOMo.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_eclipse_plugin_tutorial">Eclipse Plugin Tutorial</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_introduction">Introduction</h3>
+<div class="paragraph"><p>Eclipse UOMo is an API for working with physical quantities and units. We are going to create a demonstration application that provides an API to work with Newton’s Second Law of Motion:</p></div>
+<div class="quoteblock">
+<div class="content">
+<div class="paragraph"><p>The acceleration of a body is directly proportional to, and in the same direction as, the net force acting on the body, and inversely proportional to its mass.</p></div>
+</div>
+<div class="attribution">
+</div></div>
+<div class="paragraph"><p><span class="image">
+<img src="images/image20.jpg" alt="images/image20.jpg">
+</span></p></div>
+<div class="paragraph"><p>Otherwise written as:</p></div>
+<div class="paragraph"><p><span class="monospaced">F = M×A</span></p></div>
+<div class="paragraph"><p>Where:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<span class="monospaced">F</span> is Force in Newtons
+</p>
+</li>
+<li>
+<p>
+<span class="monospaced">M</span> is Mass in Kilograms
+</p>
+</li>
+<li>
+<p>
+<span class="monospaced">A</span> is Acceleration in Meters per second
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Our example API will provide methods for computing any of the above, given the other two.</p></div>
+<div class="paragraph"><p>Example code for the following is available at GitHub:</p></div>
+<div class="paragraph"><p><a href="https://github.com/duckAsteroid/uomo-example">https://github.com/duckAsteroid/uomo-example</a></p></div>
+</div>
+<div class="sect2">
+<h3 id="_new_eclipse_plugin_project">New Eclipse Plugin Project</h3>
+<div class="paragraph"><p>Most of verbosity in the steps that follows are related to complexities of creating Eclipse plug-ins rather than anything hard about using UOMo&#8230;</p></div>
+<div class="olist arabic"><ol class="arabic">
+<li>
+<p>
+In Eclipse click the <span class="monospaced">File &#8594; New &#8594; Project&#8230;</span> menu
+</p>
+</li>
+<li>
+<p>
+Select Plug-in Project:<br>
+<span class="image">
+<img src="images/image09.png" alt="images/image09.png">
+</span><br>
+Click “Next”
+</p>
+</li>
+<li>
+<p>
+Enter a name for the plugin project (e.g. <span class="monospaced">com.acme.n2l</span>):<br>
+<span class="image">
+<img src="images/image12.png" alt="images/image12.png">
+</span><br>
+Click “Next”
+</p>
+</li>
+<li>
+<p>
+You can now customise the plugin details as follows:<br>
+<span class="image">
+<img src="images/image15.png" alt="images/image15.png">
+</span><br>
+Ensure that  all checkboxes under “Options” are de-selected.<br>
+Then click “Finish”.<br>
+</p>
+</li>
+<li>
+<p>
+Eclipse will create your new project.
+</p>
+</li>
+</ol></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph"><p>If the following dialog appears:<br>
+<span class="image">
+<img src="images/image13.png" alt="images/image13.png">
+</span><br>
+click “Yes” to open the PDE perspective.</p></div>
+</td>
+</tr></table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_eclipse_build_platform_configuration">Eclipse Build Platform Configuration</h3>
+<div class="paragraph"><p>Now we need to configure Eclipse so that it knows about UOMo and where it lives so it can build against it.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">The default behavour of Eclipse when building plug-ins is to build against "itself"; that is to use the currently running plug-ins of the IDE as the build target.</td>
+</tr></table>
+</div>
+<div class="olist arabic"><ol class="arabic">
+<li>
+<p>
+Click the menu “Window &#8594; Preferences”
+</p>
+</li>
+<li>
+<p>
+Navigate to the “Plug-in Development &#8594; Target Platform” section of the preferences dialog:<br>
+<span class="image">
+<img src="images/image10.png" alt="images/image10.png">
+</span><br>
+Click “Add&#8230;”
+</p>
+</li>
+<li>
+<p>
+Select “Nothing: Start with an empty target definition” in the “New target definition” dialog:<br>
+<span class="image">
+<img src="images/image04.png" alt="images/image04.png">
+</span><br>
+Click “Next”
+</p>
+</li>
+<li>
+<p>
+Give the new target a name, such as “UOMo”:<br>
+<span class="image">
+<img src="images/image03.png" alt="images/image03.png">
+</span><br>
+Click “Add&#8230;”
+</p>
+</li>
+<li>
+<p>
+Select “Software Site” from the plug-in source options:<br>
+<span class="image">
+<img src="images/image17.png" alt="images/image17.png">
+</span><br>
+Click “Next”
+</p>
+</li>
+<li>
+<p>
+You should now be in the "Add Content" dialog. From here we can add plugins to our target platform:.<br>
+<span class="image">
+<img src="images/image02.png" alt="images/image02.png">
+</span><br>
+Firstly, we need to give our target definition a place to get Eclipse plug-ins from. Enter the URL <a href="http://download.eclipse.org/releases/juno">http://download.eclipse.org/releases/juno</a> into the “Work With” field. Ensure that the “Group by Category” field is un-checked.<br>
+Type “Eclipse Platform” into the search field:<br>
+Select the Eclipse Platform (without <span class="monospaced">M*</span> at the end :- as this is a milestone release)<br>
+Click “Finish”
+</p>
+</li>
+<li>
+<p>
+Eclipse will do some loading/resolving&#8230;
+</p>
+</li>
+<li>
+<p>
+Now we need to add the UOMo libraries to our target. Click “Add..” again on the target platform editor window.<br>
+The select “Software Site” again. But this time enter the URL <a href="http://download.eclipse.org/uomo/0.6/repository/">http://download.eclipse.org/uomo/0.6/repository/</a><br>
+<span class="image">
+<img src="images/image14.png" alt="images/image14.png">
+</span><br>
+Select the EclipseUOMo feature.
+Click “Finish”
+</p>
+</li>
+<li>
+<p>
+Eclipse will do some more loading/resolving. You are back at the target platform preferences page:<br>
+<span class="image">
+<img src="images/image21.png" alt="images/image21.png">
+</span><br>
+Select UOMo target and click “Apply”
+</p>
+</li>
+<li>
+<p>
+<strong>(Optional)</strong> You can click “Share..” if you want to save this target definition as a file for use in the future. Pick a location and a name for the target file in the window as below:<br>
+<span class="image">
+<img src="images/image08.png" alt="images/image08.png">
+</span><br>
+Click “Finish” when you are done.
+</p>
+</li>
+<li>
+<p>
+Click “OK” on the preferences page and go back to the main Eclipse IDE.
+</p>
+</li>
+</ol></div>
+</div>
+<div class="sect2">
+<h3 id="_example_code">Example Code</h3>
+<div class="paragraph"><p>Now you are ready to start work on our N2L plug-in.</p></div>
+<div class="olist arabic"><ol class="arabic">
+<li>
+<p>
+Create a new class called <span class="monospaced">NewtonsSecondLaw</span> in the package <span class="monospaced">com.acme.n2l</span>
+</p>
+</li>
+<li>
+<p>
+Now add the following code:
+</p>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #000080">package</span></span> com<span style="color: #990000">.</span>acme<span style="color: #990000">.</span>n2l<span style="color: #990000">;</span>
+
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> org<span style="color: #990000">.</span>eclipse<span style="color: #990000">.</span>uomo<span style="color: #990000">.</span>units<span style="color: #990000">.</span>SI<span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> org<span style="color: #990000">.</span>eclipse<span style="color: #990000">.</span>uomo<span style="color: #990000">.</span>units<span style="color: #990000">.</span>impl<span style="color: #990000">.</span>quantity<span style="color: #990000">.</span>AccelerationAmount<span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> org<span style="color: #990000">.</span>eclipse<span style="color: #990000">.</span>uomo<span style="color: #990000">.</span>units<span style="color: #990000">.</span>impl<span style="color: #990000">.</span>quantity<span style="color: #990000">.</span>ForceAmount<span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> org<span style="color: #990000">.</span>eclipse<span style="color: #990000">.</span>uomo<span style="color: #990000">.</span>units<span style="color: #990000">.</span>impl<span style="color: #990000">.</span>quantity<span style="color: #990000">.</span>MassAmount<span style="color: #990000">;</span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">public</span></span> <span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">NewtonsSecondLaw</span> <span style="color: #FF0000">{</span>
+
+    <span style="font-weight: bold"><span style="color: #0000FF">public</span></span> <span style="font-weight: bold"><span style="color: #0000FF">static</span></span> <span style="font-weight: bold"><span style="color: #0000FF">final</span></span> <span style="color: #008080">ForceAmount</span> <span style="font-weight: bold"><span style="color: #000000">calculateForce</span></span><span style="color: #990000">(</span><span style="color: #008080">MassAmount</span> m<span style="color: #990000">,</span> <span style="color: #008080">AccelerationAmount</span> a<span style="color: #990000">)</span> <span style="color: #FF0000">{</span>
+        <span style="color: #009900">double</span> m_kg <span style="color: #990000">=</span> m<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">doubleValue</span></span><span style="color: #990000">(</span>SI<span style="color: #990000">.</span>KILOGRAM<span style="color: #990000">);</span>
+        <span style="color: #009900">double</span> a_si <span style="color: #990000">=</span> a<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">doubleValue</span></span><span style="color: #990000">(</span>SI<span style="color: #990000">.</span>METRES_PER_SQUARE_SECOND<span style="color: #990000">);</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">return</span></span> <span style="font-weight: bold"><span style="color: #0000FF">new</span></span> <span style="font-weight: bold"><span style="color: #000000">ForceAmount</span></span><span style="color: #990000">(</span>m_kg <span style="color: #990000">*</span> a_si<span style="color: #990000">,</span> SI<span style="color: #990000">.</span>NEWTON<span style="color: #990000">);</span>
+    <span style="color: #FF0000">}</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="paragraph"><p>The important part of this code is the <span class="monospaced">calculateForce</span> method; it takes as parameters an amount of mass and an amount of acceleration - and returns an amount of force.
+The units of these parameters are not defined; just that they are of quanity <span class="monospaced">Mass</span> and <span class="monospaced">Acceleration</span> respectively.</p></div>
+<div class="paragraph"><p>So our code needs to get the absolute value of these in a known unit for calculation - for simplicity we use the SI units Kilogram (kg) and Metres per second per second (m/s2).
+We then simply perform the multiplication, and create a result using the SI unit for Force - Newtons (N).</p></div>
+</li>
+<li>
+<p>
+Now we have our example API implementation - we need to call it to see it do something. Let&#8217;s create a unit test. (OK purists, we should have created this first to be truly TDD, but this is just a tutorial!)
+</p>
+</li>
+</ol></div>
+</div>
+<div class="sect2">
+<h3 id="_unit_test_plug_in_code">Unit Test Plug-in Code</h3>
+<div class="olist arabic"><ol class="arabic">
+<li>
+<p>
+Now we are ready to test out our API with a Unit test. <em>What follows is a little long winded thanks to how Eclipse Plug-ins do unit tests.</em>
+</p>
+</li>
+<li>
+<p>
+Firstly we need to create a New Fragment Project <em>(File &#8594; New &#8594; Project&#8230;)</em>:<br>
+<span class="image">
+<img src="images/image05.png" alt="images/image05.png">
+</span><br>
+Click “Next”
+</p>
+</li>
+<li>
+<p>
+Give the fragment the name of our main project with “.test” appended:<br>
+<span class="image">
+<img src="images/image11.png" alt="images/image11.png">
+</span><br>
+Click “Next”
+</p>
+</li>
+<li>
+<p>
+We need to give the fragment a “host” that is our <span class="monospaced">com.acme.n2l</span> plugin:<br>
+<span class="image">
+<img src="images/image01.png" alt="images/image01.png">
+</span><br>
+Click “Finish”
+</p>
+</li>
+<li>
+<p>
+Now we need to add JUnit to the fragment’s dependencies. Find and double click the <span class="monospaced">META-INF/MANIFEST.MF</span> file to open the fragment manifest editor. Select the “Dependencies” tab:<br>
+<span class="image">
+<img src="images/image09.png" alt="images/image09.png">
+</span><br>
+Click “Add&#8230;”
+</p>
+</li>
+<li>
+<p>
+Enter <span class="monospaced">junit</span> in the search field:<br>
+<span class="image">
+<img src="images/image16.png" alt="images/image16.png">
+</span><br>
+Select the org.junit plugin and click “OK”
+</p>
+</li>
+<li>
+<p>
+Now we create a unit test class in our fragment. Find and right click on our <span class="monospaced">NewtonsSeconLaw.java</span> file and choose “New &#8594; Other&#8230;” from the context menu.
+</p>
+</li>
+<li>
+<p>
+Select <em>Java &#8594; JUnit &#8594; JUnit</em> Test Case from the dialog:<br>
+<span class="image">
+<img src="images/image07.png" alt="images/image07.png">
+</span><br>
+Click “Next”
+</p>
+</li>
+<li>
+<p>
+Select the location for the unit test in the src folder of our test fragment. And select the calculateForce method for testing:<br>
+<span class="image">
+<img src="images/image19.png" alt="images/image19.png">
+</span><br>
+Click “Finish”
+</p>
+</li>
+<li>
+<p>
+Now we need to replace the template test code with our own. Add the following:
+</p>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>@Test
+<span style="font-weight: bold"><span style="color: #0000FF">public</span></span> <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">testCalculateForce</span></span><span style="color: #990000">()</span> <span style="color: #FF0000">{</span>
+  <span style="color: #008080">MassAmount</span> m <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #0000FF">new</span></span> <span style="font-weight: bold"><span style="color: #000000">MassAmount</span></span><span style="color: #990000">(</span><span style="color: #993399">1000</span><span style="color: #990000">,</span> SI<span style="color: #990000">.</span>KILOGRAM<span style="color: #990000">);</span>
+  <span style="color: #008080">AccelerationAmount</span> a <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #0000FF">new</span></span> <span style="font-weight: bold"><span style="color: #000000">AccelerationAmount</span></span><span style="color: #990000">(</span><span style="color: #993399">2.5</span><span style="color: #990000">,</span> SI<span style="color: #990000">.</span>METRES_PER_SQUARE_SECOND<span style="color: #990000">);</span>
+  <span style="color: #008080">ForceAmount</span> force <span style="color: #990000">=</span> NewtonsSecondLaw<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">calculateForce</span></span><span style="color: #990000">(</span>m<span style="color: #990000">,</span> a<span style="color: #990000">);</span>
+  <span style="font-weight: bold"><span style="color: #000000">assertEquals</span></span><span style="color: #990000">(</span><span style="color: #993399">2500</span><span style="color: #990000">,</span> force<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">doubleValue</span></span><span style="color: #990000">(</span>SI<span style="color: #990000">.</span>NEWTON<span style="color: #990000">),</span> <span style="color: #993399">0.0001</span><span style="color: #990000">);</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="paragraph"><p>This method simply creates a 1000 kg mass, a 2.5 m/s<sup>2</sup> acceleration and asks our N2L class to calculate the force. We then assert that the calculated force is 2500 Newtons (+/- 0.0001).</p></div>
+</li>
+<li>
+<p>
+Save the file and Right click on it - then choose <em>Run As &#8594; JUnit Plug-in Test</em>. The test will run and you should see the JUnit results window appear:
+<span class="image">
+<img src="images/image18.png" alt="images/image18.png">
+</span>
+</p>
+</li>
+</ol></div>
+<div class="paragraph"><p>Now you have now completed and tested your first simple UOMo project.So what&#8230;</p></div>
+</div>
+<div class="sect2">
+<h3 id="_conclusions">Conclusions</h3>
+<div class="paragraph"><p>Now that’s the basics out of the way now you can try a few things that demonstrate the power of UOMo and the Units of Measurement API&#8230;</p></div>
+<div class="olist arabic"><ol class="arabic">
+<li>
+<p>
+Try changing the units used in your unit test for mass or acceleration to units of other quantities (i.e. seconds, metres, amperes, volts&#8230; ).<br>
+You will see the compiler error created because your unit is not the correct type&#8230; cool!
+</p>
+</li>
+<li>
+<p>
+The same is true when we try to extract a value - change the <span class="monospaced">force.doubleValue</span> line in the unit test to use units that are not a force&#8230;<br>
+same, the compiler error because the unit is not for a force! cool!
+</p>
+</li>
+</ol></div>
+<div class="paragraph"><p>This is important, it protects clients of your NewtonsSecondLaw API from making mistakes when they create values to pass to you. They can only pass in legitimate masses or accelerations.</p></div>
+<div class="paragraph"><p>As an example we can add another test method to our test case:</p></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>@Test
+<span style="font-weight: bold"><span style="color: #0000FF">public</span></span> <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">testWithOddUnits</span></span><span style="color: #990000">()</span> <span style="color: #FF0000">{</span>
+   <span style="font-style: italic"><span style="color: #9A1900">// We create a mass in US Pounds!</span></span>
+   <span style="color: #008080">MassAmount</span> m <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #0000FF">new</span></span> <span style="font-weight: bold"><span style="color: #000000">MassAmount</span></span><span style="color: #990000">(</span><span style="color: #993399">100</span><span style="color: #990000">,</span> USCustomary<span style="color: #990000">.</span>POUND<span style="color: #990000">);</span>
+   <span style="font-style: italic"><span style="color: #9A1900">// Now let’s create a whacky acceleration unit of our own...</span></span>
+   @<span style="font-weight: bold"><span style="color: #000000">SuppressWarnings</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"unchecked"</span><span style="color: #990000">)</span> <span style="font-style: italic"><span style="color: #9A1900">// we know this creates an acceleration!</span></span>
+   <span style="color: #008080">Unit&lt;Acceleration&gt;</span> inch_per_square_second <span style="color: #990000">=</span> <span style="color: #990000">(</span>Unit<span style="color: #990000">&lt;</span>Acceleration<span style="color: #990000">&gt;)</span>USCustomary<span style="color: #990000">.</span>INCH<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">divide</span></span><span style="color: #990000">(</span>SI<span style="color: #990000">.</span>SECOND<span style="color: #990000">).</span><span style="font-weight: bold"><span style="color: #000000">divide</span></span><span style="color: #990000">(</span>SI<span style="color: #990000">.</span>SECOND<span style="color: #990000">);</span>
+   <span style="font-style: italic"><span style="color: #9A1900">// Note our N2L API does not know this unit at all!</span></span>
+   <span style="color: #008080">AccelerationAmount</span> a <span style="color: #990000">=</span> <span style="font-weight: bold"><span style="color: #0000FF">new</span></span> <span style="font-weight: bold"><span style="color: #000000">AccelerationAmount</span></span><span style="color: #990000">(</span><span style="color: #993399">100</span><span style="color: #990000">,</span> inch_per_square_second<span style="color: #990000">);</span>
+   <span style="color: #008080">ForceAmount</span> force <span style="color: #990000">=</span> NewtonsSecondLaw<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">calculateForce</span></span><span style="color: #990000">(</span>m<span style="color: #990000">,</span> a<span style="color: #990000">);</span>
+   <span style="font-style: italic"><span style="color: #9A1900">// Yet our API is able to calculate the corresponding force without change</span></span>
+   <span style="font-style: italic"><span style="color: #9A1900">// Nice...</span></span>
+   <span style="font-weight: bold"><span style="color: #000000">assertEquals</span></span><span style="color: #990000">(</span><span style="color: #993399">867961.6621451874</span><span style="color: #990000">,</span> force<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">doubleValue</span></span><span style="color: #990000">(</span>SI<span style="color: #990000">.</span>NEWTON<span style="color: #990000">),</span> <span style="color: #993399">0.0000000001</span><span style="color: #990000">);</span>
+   <span style="font-style: italic"><span style="color: #9A1900">// Now let’s try to get the result in a weird unit...</span></span>
+   <span style="font-style: italic"><span style="color: #9A1900">// The “pound-force” is a unit for Force in English engineering units</span></span>
+     <span style="font-style: italic"><span style="color: #9A1900">// and British gravitational units (http://en.wikipedia.org/wiki/Pound-force)</span></span>
+   <span style="color: #008080">Unit&lt;Force&gt;</span> poundForce <span style="color: #990000">=</span> SI<span style="color: #990000">.</span>NEWTON<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">multiply</span></span><span style="color: #990000">(</span><span style="color: #993399">4.448222</span><span style="color: #990000">);</span>
+   <span style="font-style: italic"><span style="color: #9A1900">// and we can now extract the result of our previous calc in that new unit!</span></span>
+   <span style="font-weight: bold"><span style="color: #000000">assertEquals</span></span><span style="color: #990000">(</span><span style="color: #993399">3860886.16071079</span><span style="color: #990000">,</span> force<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">doubleValue</span></span><span style="color: #990000">(</span>poundForce<span style="color: #990000">),</span> <span style="color: #993399">0.0000000001</span><span style="color: #990000">);</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="paragraph"><p>Nice! Our API can handle weird and wonderful unit values as input and we can extract weird and wonderful unit values as output! And we didn&#8217;t have to lift a finger.</p></div>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes"><hr></div>
+<div id="footer">
+<div id="footer-text">
+Version 1.0<br>
+Last updated 2013-06-27 20:05:17 BST
+</div>
+</div>
+</body>
+</html>
