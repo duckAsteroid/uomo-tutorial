@@ -5,12 +5,30 @@ title: index
 
 <h1>Welcome to Eclipse UOMo Tutorial Pages.</h1>
 <p>This basic tutorial/recipe book is aimed to guide you through setting up and getting started with UOMo.</p>
-You can view the tutorial [in HTML](doc/target/tutorial.html).
-Download a [PDF](doc/target/tutorial.pdf)
-Download an [eBook (ePub)](doc/target/tutorial.epub)
+<p>The tutorial is available:
+<ul>
+<li><a href="doc/target/tutorial.html">in HTML</a></p>
+<li>As a <a href="doc/target/tutorial.pdf">PDF</a></p>
+<li>As an <a href="doc/target/tutorial.epub">eBook (ePub)</a>
+</ul>
+</p>
 
-Authors and Contributors
----------
+<h2>Authors and Contributors</h2>
+<p>@duckAsteroid (Chris Senior), and Werner Keil</p>
 
-@duckAsteroid (Chris Senior), and Werner Keil
-{% include footer.html %}
+
+<div class="pagination">
+    {% if paginator.previous_page == 1 %}
+        <a href="/" class="previous">Previous</a>, 
+    {% elsif paginator.previous_page %}
+        <a href="{{ site.baseurl }}/page{{paginator.previous_page}}" class="previous">Previous</a>, 
+    {% else %}
+        <span>Previous</span>, 
+    {% endif %}
+    {% if paginator.next_page %}
+        <a href="{{ site.baseurl }}/page{{paginator.next_page}}" class="next ">next</a>.
+    {% else %}
+        <span>next</span>.
+    {% endif %}
+    <span> Page {{paginator.page}} of {{paginator.total_pages}}.</span>
+</div>
