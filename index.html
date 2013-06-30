@@ -16,19 +16,3 @@ title: index
 <h2>Authors and Contributors</h2>
 <p>@duckAsteroid (Chris Senior), and Werner Keil</p>
 
-
-<div class="pagination">
-    {% if paginator.previous_page == 1 %}
-        <a href="/" class="previous">Previous</a>, 
-    {% elsif paginator.previous_page %}
-        <a href="{{ site.baseurl }}/page{{paginator.previous_page}}" class="previous">Previous</a>, 
-    {% else %}
-        <span>Previous</span>, 
-    {% endif %}
-    {% if paginator.next_page %}
-        <a href="{{ site.baseurl }}/page{{paginator.next_page}}" class="next ">next</a>.
-    {% else %}
-        <span>next</span>.
-    {% endif %}
-    <span> Page {{paginator.page}} of {{paginator.total_pages}}.</span>
-</div>
